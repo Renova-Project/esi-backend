@@ -2,7 +2,7 @@
 * Djangorestframework version: 3.15.1
 * Python version: 3.12.3
 # install the requirements
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 # run the server: 
 ` python manage.py runserver `
 ( type the command where manage.py exists)
