@@ -13,7 +13,7 @@ class SliderSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['event_name', 'start_date', 'end_date']
+        fields = ['id' , 'event_name', 'start_date', 'end_date']
         
 
 class NewsSerializer(serializers.ModelSerializer):
@@ -25,4 +25,4 @@ class NewsSerializer(serializers.ModelSerializer):
 class PartnerLogoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Partner
-        fields = ['organizationLogo']  # Only return the logo
+        fields = ['organizationId', 'organizationLogo']  # Only return the logo
