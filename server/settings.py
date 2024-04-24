@@ -27,6 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = getenv('SECRET_KEY')
 
+JWT_SECRET = getenv("JWT_SECRET")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -50,6 +52,8 @@ INSTALLED_APPS = [
     "school",
     "studies",
     "accounts",
+    "users",
+    "rest_framework_simplejwt"
 ]
 
 MIDDLEWARE = [
@@ -142,3 +146,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
+AUTH_USER_MODEL = "users.User"
