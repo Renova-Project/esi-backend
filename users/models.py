@@ -2,9 +2,19 @@ from django.contrib.auth import models as auth_models
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
+class UserType(models.TextChoices):
+    PUBLIC = "PUBLIC", _("PUBLIC")
+    STUDENT = "STUDENT", _("Student")
+    TEACHER = "TEACHER", _("Teacher")
+    ADMIN = "ADMIN", _("Admin")
+    SUPER_ADMIN = "SUPER_ADMIN", _("Super admin")
+    STUDIES_DIRECTION = "STUDIES_DIRECTION", _("Studies direction")
+    ALUMNI = "ALUMNI", _("Alumni")
+    PARTNER = "PARTNER", _("Partner")
+
 
 class UserManager(auth_models.BaseUserManager):
-    def create_user(self, first_name: str, last_name: str, email: str, password: str, type: str = "USER", is_staff=False, is_superuser=False, is_active=True) -> "User":
+    def create_user(self, first_name: str, last_name: str, email: str, password: str, type: str = UserType.PUBLIC, is_staff=False, is_superuser=False, is_active=True) -> "User":
         if not email:
             raise ValueError('user must have an email')
         if not first_name:
@@ -27,19 +37,9 @@ class UserManager(auth_models.BaseUserManager):
 
         return user
 
-    def create_superuser(self, first_name: str, last_name: str, email: str, password: str, type="SUPER_ADMIN") -> "User":
+    def create_superuser(self, first_name: str, last_name: str, email: str, password: str, type=UserType.SUPER_ADMIN) -> "User":
         self.create_user(
             first_name, last_name, email, password, type, is_staff=True, is_superuser=True)
-
-
-class UserType(models.TextChoices):
-    STUDENT = "STUDENT", _("Student")
-    TEACHER = "TEACHER", _("Teacher")
-    ADMIN = "ADMIN", _("Admin")
-    SUPER_ADMIN = "SUPER_ADMIN", _("Super admin")
-    STUDIES_DIRECTION = "STUDIES_DIRECTION", _("Studies direction")
-    ALUMNI = "ALUMNI", _("Alumni")
-    PARTNER = "PARTNER", _("Partner")
 
 
 class User(auth_models.AbstractUser):
@@ -47,7 +47,8 @@ class User(auth_models.AbstractUser):
     password = models.CharField(default='', max_length=255)
     type = models.CharField(
         max_length=63,
-        choices=UserType
+        choices=UserType,
+        default=UserType.PUBLIC
     )
     username = None
     last_login = None
