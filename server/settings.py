@@ -46,14 +46,10 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "rest_framework",
-    "compus",
-    "partnership",
-    "research",
-    "school",
-    "studies",
-    "accounts",
+    "rest_framework_simplejwt",
     "users",
-    "rest_framework_simplejwt"
+    "partnership",
+    "school"
 ]
 
 MIDDLEWARE = [
@@ -94,10 +90,10 @@ WSGI_APPLICATION = "server.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': getenv("DB_ENGINE"),
-        'NAME': getenv('DB_NAME'), 
+        'NAME': getenv('DB_NAME'),
         'USER': getenv('DB_USER'),
         'PASSWORD': getenv('DB_PASSWORD'),
-        'HOST': getenv('DB_HOST'), 
+        'HOST': getenv('DB_HOST'),
         'PORT': getenv('DB_PORT'),
     }
 }
@@ -146,4 +142,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
+
 AUTH_USER_MODEL = "users.User"
