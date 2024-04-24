@@ -1,4 +1,5 @@
 from django.contrib.auth import models as auth_models
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 
@@ -31,10 +32,23 @@ class UserManager(auth_models.BaseUserManager):
             first_name, last_name, email, password, type, is_staff=True, is_superuser=True)
 
 
+class UserType(models.TextChoices):
+    STUDENT = "STUDENT", _("Student")
+    TEACHER = "TEACHER", _("Teacher")
+    ADMIN = "ADMIN", _("Admin")
+    SUPER_ADMIN = "SUPER_ADMIN", _("Super admin")
+    STUDIES_DIRECTION = "STUDIES_DIRECTION", _("Studies direction")
+    ALUMNI = "ALUMNI", _("Alumni")
+    PARTNER = "PARTNER", _("Partner")
+
+
 class User(auth_models.AbstractUser):
     email = models.EmailField(blank=False, max_length=255, unique=True)
     password = models.CharField(default='', max_length=255)
-    type = models.CharField(default="USER", max_length=255)
+    type = models.CharField(
+        max_length=63,
+        choices=UserType
+    )
     username = None
     last_login = None
 

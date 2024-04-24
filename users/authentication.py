@@ -3,7 +3,7 @@ from rest_framework.permissions import BasePermission
 import jwt
 from django.conf import settings
 
-from .models import User
+from .models import User, UserType
 
 
 class UserAuthentication(authentication.BaseAuthentication):
@@ -40,7 +40,7 @@ class IsAdmin(BasePermission):
             user_type = user.type
         except:
             return False
-        return bool(user and user_type == "ADMIN")
+        return bool(user and (user_type == UserType.ADMIN or user_type == UserType.SUPER_ADMIN))
 
 
 class IsSuperAdmin(BasePermission):
@@ -50,4 +50,4 @@ class IsSuperAdmin(BasePermission):
             user_type = user.type
         except:
             return False
-        return bool(user and user_type == "SUPER_ADMIN")
+        return bool(user and user_type == UserType.SUPER_ADMIN)
