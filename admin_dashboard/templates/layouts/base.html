@@ -40,3 +40,15 @@
   {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>
+
+<script>
+
+
+  let isDark = localStorage.getItem('dark_layout');
+
+  if (isDark === "true") {
+    logoElement.src = "{% static 'assets/images/dark-logo.svg' %}";  // Set to dark logo
+  } else {
+    logoElement.src = "{% static 'assets/images/logo.svg' %}";  // Set to light logo
+  }
+</script>

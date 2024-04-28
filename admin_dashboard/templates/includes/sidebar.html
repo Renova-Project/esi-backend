@@ -6,7 +6,8 @@
     <div class="m-header">
       <a href="/" class="b-brand">
         <!-- ========   Change your logo from here   ============ -->
-        <img src="{% static 'assets/images/logo.svg' %}" alt="" class="logo logo-lg" />
+        <img src="{% static 'assets/images/dark-logo.svg' %}" id="logo" alt="" class="logo logo-lg" />
+        
         <span class="mtext"> ESI ALGIERS </span>
       </a>
     </div>
@@ -66,15 +67,15 @@
               class="pc-mtext">User Pages</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
           <ul class="pc-submenu">
             {% if request.user.is_superuser %}
-              <li class="pc-item"><a class="pc-link" href="{% url 'admin:password_change' %}">Change Password</a></li>
-              <li class="pc-item"><a class="pc-link" href="{% url 'admin:logout' %}">Logout</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'password_change' %}">Change Password</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'logout_user' %}">Logout</a></li>
             {% else %}
               {% if request.user.is_authenticated %}
               <li class="pc-item"><a class="pc-link" href="{% url 'password_change' %}">Change Password</a></li>
-              <li class="pc-item"><a class="pc-link" href="{% url 'logout' %}">Logout</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'logout_user' %}">Logout</a></li>
               {% else %}
-              <li class="pc-item"><a class="pc-link" href="{% url 'login' %}">Login</a></li>
-              <li class="pc-item"><a class="pc-link" href="{% url 'register' %}">Register</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'login_user' %}">Login</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'register_user' %}">Register</a></li>
               {% endif %}
             {% endif %}
           </ul>

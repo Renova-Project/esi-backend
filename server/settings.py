@@ -43,6 +43,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "admin_dashboard",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -57,7 +58,6 @@ INSTALLED_APPS = [
     "partnership",
     "school",
     "cloudinary",
-    "admin_dashboard",
 ]
 
 MIDDLEWARE = [

@@ -31,7 +31,8 @@ def registration(request):
 class UserLoginView(auth_views.LoginView):
   template_name = 'accounts/login.html'
   form_class = LoginForm
-  success_url = '/'
+  def get_success_url(self):
+      return '/'
 
 class UserPasswordResetView(auth_views.PasswordResetView):
   template_name = 'accounts/password_reset.html'

@@ -1,15 +1,6 @@
-let isDark = localStorage.getItem('dark_layout');
-
-if (isDark === "true") {
-    layout_change("dark")
-} else {
-    layout_change("light")
-}
-
 
 document.getElementById("p_dark_mode").addEventListener("change", function (event) {
     console.log(this.checked)
-
     if (this.checked === true) { //set dark
         layout_change("dark")
     } else {                      //set light

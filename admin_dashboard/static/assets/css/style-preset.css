@@ -58,13 +58,13 @@ File: style.css
 
 [data-pc-theme=dark] .badge.bg-light-secondary {
   background: rgba(102, 16, 242, 0.2);
-  color: #6610f2;
+  color: #2196f3;
   border-color: rgba(102, 16, 242, 0.2);
 }
 
 [data-pc-theme=dark] .icon-svg-secondary {
   fill: rgba(102, 16, 242, 0.2);
-  stroke: #6610f2;
+  stroke: #2196f3;
 }
 
 [data-pc-theme=dark] .bg-light-secondary {
@@ -82,13 +82,13 @@ File: style.css
 }
 
 [data-pc-theme=dark] .alert-secondary {
-  color: #6610f2;
+  color: #2196f3;
   background: rgba(102, 16, 242, 0.2);
   border-color: rgba(102, 16, 242, 0.2);
 }
 
 [data-pc-theme=dark] .alert-secondary .alert-link {
-  color: #6610f2;
+  color: #2196f3;
 }
 
 [data-pc-theme=dark] .form-check .form-check-input.input-light-secondary:checked {

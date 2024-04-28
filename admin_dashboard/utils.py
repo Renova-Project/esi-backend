@@ -37,7 +37,10 @@ except ImportError:
 
 
 default_apps_icon = {
-    'auth': 'ti-user'
+    'auth': 'ti-user',
+    'partnership': 'ti-link',
+    'school': 'ti-school',
+    'users': 'ti-users',
 }
 
 
