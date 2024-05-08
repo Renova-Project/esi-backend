@@ -5,8 +5,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 
 class Slider(models.Model):
     slider_image = models.ImageField(upload_to="school/slider/")
-    slider_description = models.TextField()
-    slider_action_name = models.TextField()
+    slider_description = models.CharField(max_length=255)
+    slider_action_name = models.CharField(max_length=100)
     slider_link = models.URLField(blank=True)
 
 class Image(models.Model):
@@ -21,6 +21,11 @@ class Image(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
     image_description = models.TextField()
     link_image = models.ImageField(upload_to="school/images/")
+    
+    
+class SchoolGallery(models.Model):
+    image_description = models.TextField()
+    link_image = models.ImageField(upload_to="school/gallery/")
     
 class Event(models.Model):
     event_name = models.TextField()

@@ -41,17 +41,22 @@
               {% if app.models %}
                 <ul class="pc-submenu">
                   {% for model in app.models %}
-                  {% if model.url %}
-                  <li class="pc-item">
-                    <a class="pc-link" href="{{ model.url }}">
-                      {{ model.label }}
-                    </a>
-                  </li>
+                  {% if model.label == "School gallerys" %}
+                  <li class="pc-item"><a class="pc-link" href="{% url 'school_gallery' %}">Gallery</a></li>
                   {% else %}
-                  <li class="pc-item">{{ model.label }}</li>
+                    {% if model.url %}
+                    <li class="pc-item">
+                      <a class="pc-link" href="{{ model.url }}">
+                        {{ model.label }}
+                      </a>
+                    </li>
+                    {% else %}
+                    <li class="pc-item">{{ model.label }}</li>
+                    {% endif %}
                   {% endif %}
                   {% endfor %}
                 </ul>
+
               {% endif %}
             </li>
             {% endif %}

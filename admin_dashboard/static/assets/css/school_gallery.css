@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+}
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px; /* Add spacing between images */
+}
+
+.gallery {
+  position: relative;
+  width: 31%; /* 3 images per row */
+  overflow: hidden;
+  padding-bottom: calc(30% * 0.7); /* Maintain aspect ratio */
+}
+
+.gallery img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will ensure the image is cropped to fit the aspect ratio */
+  transition: opacity 0.3s; 
+}
+
+.gallery:hover img {
+  opacity: 0.6;
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Initially hidden */
+  background-color: rgba(0, 0, 0, 0.5); 
+  transition: opacity 0.3s; 
+}
+
+.gallery:hover .gallery-overlay {
+  opacity: 1; 
+}
+
+.gallery-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.gallery-buttons button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.gallery-buttons .edit {
+  width: 4rem;
+  background-color: #4CAF50; 
+  color: #fff;
+}
+
+
+
+.edit:hover{
+  background-color: #4CAF50; 
+}
+
+.gallery-buttons .delete {
+  width: 4rem;
+  background-color: #f44336; 
+  color: #fff;
+  margin-left: 10px;
+}
+
+.gallery-buttons .delete:hover {
+  background-color: #e53935; 
+}
+
+
+.card-header{
+  margin: 1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap ;
+  align-items: center ;
+  padding-right: 5rem;
+}
+
+
+
+.card-header h4 {
+  margin-bottom: 0;
+  display: flex;
+}

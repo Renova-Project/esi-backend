@@ -48,7 +48,6 @@ class LoginView(APIView):
             raise AuthenticationFailed("Invalid password")
         
         instance = UserSerializer(user)
-
         token = services.create_token(user_id=user.id)
 
         res = Response(data=instance.data)

@@ -16,7 +16,7 @@
             {% endif %}
 
             {% if show_save_and_continue %}
-                <button type="submit" name="_continue" class="btn btn-sm btn-warning">{% if can_change %}{% trans 'Save and continue editing' %}{% else %}{% trans 'Save and view' %}{% endif %}</button>
+                <button type="submit" name="_continue" class="btn btn-sm btn-continue">{% if can_change %}{% trans 'Save and continue editing' %}{% else %}{% trans 'Save and view' %}{% endif %}</button>
             {% endif %}
 
             {% if show_close %}

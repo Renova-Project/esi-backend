@@ -1,14 +1,40 @@
 {% load i18n %}
+{% load static %}
+{% load admin_urls %}
+{% load admin_list %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/filter.css" %}">
+{% endblock %}
+
 
 <div class="filter_panel">
     <div class="mb-3">
-        <span class="h6">{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</span>
+        <span class="h4">{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</span>
     </div>
-    <ul>
+    <ul class="filter-list-items">
         {% for choice in choices %}
-            <li{% if choice.selected %} class="text-success selected"{% endif %}>
-                <a href="{{ choice.query_string|iriencode }}" title="{{ choice.display }}">{{ choice.display }}</a>
-            </li>
+        <div class="form-check">
+            <!-- Radio button with the query string as the value and selected if applicable -->
+            <input
+                type="radio"
+                class="form-check-input"
+                name="filter"
+                id="filter_{{ choice.display }}"
+                value="{{ choice.query_string|iriencode }}"
+                {% if choice.selected %} checked {% endif %}
+                onclick="redirectTo('{{ choice.query_string|iriencode }}')"  
+            >
+            <!-- Label for the radio button -->
+            <a href="{{ choice.query_string|iriencode }}" title="{{ choice.display }}">{{ choice.display }}</a>
+    
+        </div>
         {% endfor %}
     </ul>
 </div>
+
+{% block extra_js %}
+  <!-- Apex Chart -->
+  <script src="{% static 'assets/js/filter.js' %}"></script>
+{% endblock extra_js %}
+

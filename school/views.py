@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import status
 from partnership.models import Partner
-
+from django.db.models import Q
 
 
 # Define the view class
@@ -53,4 +53,38 @@ class HomeView(APIView):
         }
 
         return Response(response_data, status=status.HTTP_200_OK)
+
+class SearchView(APIView):
+    def get(self, request):
+        query = request.query_params.get('q', None) 
+        
+        if not query:
+            return Response({"error": "Query parameter 'q' is required"}, status=400)
+        
+        events = Event.objects.filter(
+            Q(event_name__icontains=query) |
+            Q(event_type__icontains=query) |
+            Q(event_description__icontains=query) |
+            Q(event_details__icontains=query) |
+            Q(event_location__icontains=query)
+        )
+
+        news = News.objects.filter(
+            Q(news_name__icontains=query) |
+            Q(news_type__icontains=query) |
+            Q(news_details__icontains=query)
+        )
+        
+
+        
+        event_serializer = EventSerializer(events, many=True)
+        news_serializer = NewsSerializer(news, many=True)
+
+        return Response({
+            "events": event_serializer.data,
+            "news": news_serializer.data , 
+        })
+
+    
+    
     

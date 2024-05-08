@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/school_gallery.css" %}">
+{% endblock %}
+
+
+{% block title %} Dashboard {% endblock title %}
+{% block content %}
+  <!-- [ Main Content ] start -->
+  <div class="pc-container">
+    <div class="pc-content">
+      <!-- [ Main Content ] start -->
+      <div class="row">
+        <!-- [ sample-page ] start -->
+        <div class="card-header ">
+          <h4 class="mb-0">IMAGE GALLERY</h4>
+          <a href="{% url 'admin:school_schoolgallery_add' %}" class="btn btn-sm btn-outline-gray-600 btn-primary ">Add To School Gallery</a>
+        </div>
+        <div class="gallery-container">
+        {% for image in images %}
+          <div class="gallery">
+            <img src="{{base_url}}{{ image.link_image }}" alt="{{ image.description|default:'Gallery Image' }}">
+            <div class="gallery-overlay">
+              <div class="gallery-buttons">
+                <a href="{% url 'admin:school_schoolgallery_change' image.id %}" class="btn btn-sm btn-continue" style="background-color: #4CAF50; 
+                color: #fff; margin-right: 10px;" >Edit</a>
+                <a href="{% url 'admin:school_schoolgallery_delete' image.id %}" class="btn btn-sm btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        <!-- [ sample-page ] end -->
+      </div>
+      <!-- [ Main Content ] end -->
+    </div>
+  </div>
+  <!-- [ Main Content ] end -->
+{% endblock content %}
+
+
+
+
+
+
+
+

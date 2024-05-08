@@ -2414,7 +2414,7 @@ textarea.form-control-lg {
   display: block;
   min-height: 1.3125rem;
   padding-left: 1.75em;
-  margin-bottom: 0.125rem;
+  margin-bottom: 0.75rem;
 }
 .form-check .form-check-input {
   float: left;
@@ -3102,6 +3102,8 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #00C853;
 }
 
+
+
 .btn-info {
   --bs-btn-color: #ffffff;
   --bs-btn-bg: #3EC9D6;
@@ -3340,10 +3342,15 @@ textarea.form-control-lg {
 }
 
 .btn-sm, .btn-group-sm > .btn {
-  --bs-btn-padding-y: 0.25rem;
-  --bs-btn-padding-x: 0.5rem;
+  --bs-btn-padding-y: 0.375rem;
+  --bs-btn-padding-x: 1.75rem;
   --bs-btn-font-size: 0.765625rem;
-  --bs-btn-border-radius: 2px;
+  --bs-btn-border-radius: 4px;
+}
+
+.btn-continue{
+  background-color: #26D06D;
+  color: #fff;
 }
 
 .fade {
@@ -3772,6 +3779,8 @@ textarea.form-control-lg {
 .btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
 }
 
 .btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
@@ -4347,8 +4356,8 @@ textarea.form-control-lg {
 }
 
 .card {
-  --bs-card-spacer-y: 25px;
-  --bs-card-spacer-x: 25px;
+  --bs-card-spacer-y: 16px;
+  --bs-card-spacer-x: 16px;
   --bs-card-title-spacer-y: 0.5rem;
   --bs-card-border-width: 0px;
   --bs-card-border-color: rgba(0, 0, 0, 0.125);
