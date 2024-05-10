@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     "partnership",
     "school",
     "cloudinary",
+    "studies",
+    
 ]
 
 MIDDLEWARE = [
