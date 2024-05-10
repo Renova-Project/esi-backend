@@ -35,6 +35,7 @@ class Event(models.Model):
     end_date = models.DateTimeField()
     event_details = models.TextField()
     event_location = models.TextField()
+    #event_maker = models.ForeignKey(Club, on_delete=models.CASCADE , null=True)
     #image = models.ForeignKey('Image', on_delete=models.CASCADE) #indicate one associated image
 
 class News(models.Model):

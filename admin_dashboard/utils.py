@@ -41,6 +41,7 @@ default_apps_icon = {
     'partnership': 'ti-link',
     'school': 'ti-school',
     'users': 'ti-users',
+    'clubs': 'ti-social',
 }
 
 

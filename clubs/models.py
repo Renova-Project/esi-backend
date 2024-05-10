@@ -3,19 +3,28 @@ from django.db import models
 # Create your models here.
 
 class Club(models.Model):
-    nomClub = models.CharField(max_length=255) #coming from  the default user
-    emailClub = models.EmailField()  #comming from the default user
-    openingDate = models.DateField()  
-    logo = models.ImageField( null=False, upload_to='clubs/logo/')  
+    #opening_date = models.DateField()  
+    logo = models.ImageField(upload_to='clubs/logo/')  
     #idPresident = models.ForeignKey(User, on_delete=models.CASCADE)  
-    memberCount = models.IntegerField()  
-    eventCount = models.IntegerField()
-    events = models.ManyToManyField('events.Event', related_name='events')
+    member_count = models.IntegerField()  
+    event_count = models.IntegerField()
+    description = models.TextField()
+
+
+
+class ClubEventExperience (models.Model) :
+    
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    #event = models.ForeignKey('school.Event', on_delete=models.CASCADE)
+    experience = models.TextField()
+    rating = models.IntegerField()
+    date = models.DateField()
+    # add student  foreign key
+    
+    
     
     
 
-    def __str__(self):
-        return self.nomClub
     
     
     
