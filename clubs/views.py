@@ -1,10 +1,12 @@
 # Create your views here.
 from .models import Club, ClubEventExperience
-from .serializers import ClubSerializer , EventSerializer , EventExperienceSerializer
+from .serializers import ClubSerializer , EventSerializer , EventExperienceSerializer, ClubDetailSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response 
 from school.models import Event
 from rest_framework import status
+from rest_framework import generics
+
 
 '''
 views : 
@@ -14,11 +16,16 @@ views :
 - post an event by a club
 - update a post by a club
 - delete a post by a club
-- cancel event by a club 
 - get all upcoming events of a club
 
 '''
 
+
+
+class ClubDetailAPIView(generics.RetrieveAPIView):
+    queryset = Club.objects.all()
+    serializer_class = ClubDetailSerializer
+    lookup_field = 'id'
 
 
 class ClubViewSet(APIView):

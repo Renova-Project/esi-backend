@@ -10,14 +10,9 @@ class Slider(models.Model):
     slider_link = models.URLField(blank=True)
 
 class Image(models.Model):
-    
-    # Foreign key to content type, which defines the model type (e.g., Library, School, etc.)
     content_type = models.ForeignKey(ContentType,null=True, on_delete=models.CASCADE)
 
-    # Stores the primary key of the specific instance
     object_id = models.PositiveIntegerField(null=True)
-
-    # Combines content_type and object_id to reference any model
     content_object = GenericForeignKey('content_type', 'object_id')
     image_description = models.TextField()
     link_image = models.ImageField(upload_to="school/images/")
@@ -35,8 +30,23 @@ class Event(models.Model):
     end_date = models.DateTimeField()
     event_details = models.TextField()
     event_location = models.TextField()
+    
+    is_validated = models.BooleanField(default=False)
     #event_maker = models.ForeignKey(Club, on_delete=models.CASCADE , null=True)
     #image = models.ForeignKey('Image', on_delete=models.CASCADE) #indicate one associated image
+    
+
+class SuccessStory(models.Model) : 
+    
+    image =models.ImageField(upload_to="school/success_stories")
+    title = models.CharField(max_length=255)
+    description =models.TextField()
+    story_date =models.DateField()
+    
+class SchoolStatistic(models.Model) : 
+    designation = models.CharField(max_length=255)
+    number = models.IntegerField()
+     
 
 class News(models.Model):
     NEWS_TYPE_CHOICES = (

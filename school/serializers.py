@@ -1,6 +1,6 @@
 # serializers.py
 from rest_framework import serializers
-from .models import Slider , Event,News
+from .models import Slider , Event,News , SuccessStory
 from partnership.models import Partner
 
 
@@ -26,3 +26,8 @@ class PartnerLogoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Partner
         fields = ['organizationId', 'organizationLogo']  # Only return the logo
+        
+class SuccessStoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SuccessStory
+        fields = '__all__'

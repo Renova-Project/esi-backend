@@ -1,7 +1,7 @@
 
 from rest_framework import generics
-from .models import Slider , Event,News
-from .serializers import SliderSerializer , EventSerializer , NewsSerializer , PartnerLogoSerializer
+from .models import Slider , Event,News, SuccessStory
+from .serializers import SliderSerializer , EventSerializer , NewsSerializer , PartnerLogoSerializer, SuccessStoriesSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import status
@@ -84,6 +84,10 @@ class SearchView(APIView):
             "events": event_serializer.data,
             "news": news_serializer.data , 
         })
+        
+class SuccessStroriesView(generics.ListAPIView):
+    queryset = SuccessStory.objects.all()  
+    serializer_class = SuccessStoriesSerializer  
 
     
     

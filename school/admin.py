@@ -1,24 +1,8 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from .models import Slider, Image, Event,News ,SchoolGallery ,SuccessStory, Defense, Conference, Competition, Examiner, Speaker
 
 
-# Register your models here.
-# admin.py
-from .models import Slider, Image, Event, News,SchoolGallery, Defense, Conference, Competition, Examiner, Speaker
-
-admin.site.register(Image)
-#admin.site.register(News)
-admin.site.register(SchoolGallery)
-#admin.site.register(Defense)
-#admin.site.register(Conference)
-#admin.site.register(Competition)
-#admin.site.register(Examiner)
-#admin.site.register(Speaker)
-
-
-
-
-# Define the SliderAdmin class to customize admin functionalities for the Slider model
 class SliderAdmin(admin.ModelAdmin):
     
     list_display = ('custom_slider_description', 'custom_slider_action_name', 'custom_slider_link', 'slider_image_thumbnail')
@@ -69,7 +53,7 @@ class EventAdmin(admin.ModelAdmin):
     
     actions =None
     
-    
+        
 class NewsAdmin(admin.ModelAdmin):
     # Instead of displaying 'news_date' directly, use custom methods for date and time
     list_display = ['news_name', 'news_date_display', 'news_time_display', 'thumbnail_news']
@@ -78,12 +62,10 @@ class NewsAdmin(admin.ModelAdmin):
 
     def news_date_display(self, obj):
         return obj.news_date.strftime('%Y-%m-%d')
-
     news_date_display.short_description = 'News Date'
 
     def news_time_display(self, obj):
         return obj.news_date.strftime('%H:%M:%S')
-
     news_time_display.short_description = 'News Time'
 
     def thumbnail_news(self, obj):
@@ -91,12 +73,29 @@ class NewsAdmin(admin.ModelAdmin):
             from django.utils.html import mark_safe
             return mark_safe(f'<img src="{obj.image.link_image.url}" style="width: 100px; height: auto;" />')
         return "No Image"
-
     thumbnail_news.short_description = 'Thumbnail'
 
     actions = None
 
-admin.site.register(News, NewsAdmin)
+    
+class SuccessStoryAdmin(admin.ModelAdmin):
+    list_display = ['shortened_title', 'thumbnail']  
+    
+    def shortened_title(self, obj):
+        if len(obj.title) > 60:
+            return obj.title[:60] + ' ...'
+        else:
+            return obj.title
+    shortened_title.short_description = 'Title'
+    
+    def thumbnail(self, obj):
+        if obj.image:
+            from django.utils.html import mark_safe
+            return mark_safe(f'<img src="{obj.image.url}" style="width: 50px; height: 50px;" />')
+        return "No Image"
+    thumbnail.short_description = 'Image'
+    
+    actions =None
     
 
  
@@ -104,5 +103,9 @@ admin.site.register(News, NewsAdmin)
 # Register the model with the custom admin class
 #admin.site.register(SchoolGallery, SchoolGalleryAdmin)
 
+admin.site.register(Image)
+admin.site.register(SchoolGallery)
+admin.site.register(News, NewsAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Slider, SliderAdmin)
+admin.site.register(SuccessStory, SuccessStoryAdmin)
