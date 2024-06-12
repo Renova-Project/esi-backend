@@ -25,7 +25,7 @@ class Event(models.Model):
     event_location = models.TextField()
     
     is_validated = models.BooleanField(default=False)
-    event_file = models.FileField(upload_to="school/events/files", null=True, blank=True)# in the case of club technical file
+    image = models.ImageField(upload_to="school/events/images", null=True, blank=True)
     
     event_maker = models.ForeignKey(User, on_delete=models.CASCADE , null=True)
     #image = models.ForeignKey('Image', on_delete=models.CASCADE) #indicate one associated image

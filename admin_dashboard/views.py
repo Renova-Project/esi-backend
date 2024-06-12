@@ -13,6 +13,9 @@ from alumni.models import Alumni
 from partnership.models import Diplome
 from django.shortcuts import redirect, get_object_or_404
 
+from django.core.mail import send_mail
+
+
 
 BASE_URL = 'https://res.cloudinary.com/derk6emxa/image/upload/v1/'
 
@@ -174,6 +177,13 @@ def diplome_validation_view(request):
   return render(request, 'pages/diplome_validation.html', context)  
 
 
+def render_dashboard(request):
+  
+  partner_count = Partner.objects.count()
+  
+  return render(request, 'pages/dashboard.html')
+
+
 def validate_diplome(request):
     if request.method == 'POST':
         validate_id = request.POST.get('validate_id')
@@ -184,6 +194,7 @@ def validate_diplome(request):
           diplome.is_validated = True
         if unvalidate_id :
           diplome.is_validated = False
+
         diplome.save()
         
     return render(request ,'pages/diplome_validation.html')
