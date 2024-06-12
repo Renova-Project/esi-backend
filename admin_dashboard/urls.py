@@ -6,7 +6,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index),
-    
+    path('esi-chat/', views.chat_view, name='chat_front'),
     
     path('schoolgallery/', views.school_gallery_view, name='school_gallery'),
     path('delete_image/<int:image_id>/', views.delete_image_view, name='delete_image'),
@@ -25,9 +25,6 @@ urlpatterns = [
     
     path('validate_diplome/', views.validate_diplome, name='validate_diplome'),
 
-
-
-
     # Authentication
     path('accounts/login/', views.UserLoginView.as_view(), name='login_user'),
     path('accounts/logout/', views.user_logout_view, name='logout_user'),#to be changed
@@ -45,4 +42,6 @@ urlpatterns = [
     path('accounts/password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='accounts/password_reset_complete.html'
     ), name='password_reset_complete'),
+    
+    
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
