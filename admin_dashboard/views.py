@@ -23,6 +23,10 @@ def index(request):
   return render(request, 'pages/index.html')
 
 
+def chat_view(request):
+  return render(request, 'pages/chat_front.html')
+
+
 # Authentication
 def registration(request):
   if request.method == 'POST':
@@ -183,19 +187,6 @@ def validate_diplome(request):
         diplome.save()
         
     return render(request ,'pages/diplome_validation.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 
@@ -36,5 +37,21 @@ class Diplome(models.Model) :
     image =models.ImageField(upload_to="partner/dimplomes/")
     partner = models.ForeignKey(Partner , on_delete=models.CASCADE)
     is_validated = models.BooleanField(default=None)
+    
+    
+class Courses(models.Model) : 
+    
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    date_range = models.IntegerField(default=1)
+    price = models.FloatField(
+        validators=[MinValueValidator(0.0)]
+    )
+    level = models.CharField(max_length=255 , choices=[('beginner','beginner'),('intermediate','intermediate'),('advanced','advanced')])
+    rate = models.FloatField(
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
+    )
+    image = models.ImageField(upload_to="courses/")
+    
 
 

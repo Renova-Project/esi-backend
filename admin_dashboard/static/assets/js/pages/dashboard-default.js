@@ -225,14 +225,10 @@ function floatchart() {
       dataLabels: {
         enabled: false
       },
-      colors: ['#f36e21', '#2196f3'],
+      colors: ['#2196f3'],
       series: [
         {
-          name: 'Loss',
-          data: [35, 125, 35, 35, 35, 80, 35, 20, 35, 45, 15, 75]
-        },
-        {
-          name: 'Profit',
+          name: 'Visitors',
           data: [35, 15, 15, 35, 65, 40, 80, 25, 15, 85, 25, 75]
         }
       ],
