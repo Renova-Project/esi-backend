@@ -42,6 +42,8 @@ default_apps_icon = {
     'school': 'ti-school',
     'users': 'ti-users',
     'clubs': 'ti-social',
+    'alumni' : 'ti-user-x', 
+    "research" :'ti-search'
 }
 
 

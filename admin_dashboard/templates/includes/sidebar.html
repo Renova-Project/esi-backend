@@ -67,6 +67,35 @@
           <label>Pages</label>
           <i class="ti ti-news"></i>
         </li>
+
+
+        <li class="pc-item pc-hasmenu">
+          <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-checks"></i></span><span
+              class="pc-mtext">validation</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
+          <ul class="pc-submenu">
+            {% if request.user.is_superuser %}
+              <li class="pc-item"><a class="pc-link" href="{% url 'club_event_validation' %}">Club Events</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'partnership_request_validation' %}">Partnership request</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'diplome_validation' %}">Diplome Validation</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'success_stories_validation' %}">Success Stories</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'alumni_testimony_validation' %}">Alumni testimonies</a></li>
+
+
+            {% else %}
+              {% if request.user.is_authenticated %}
+              <li class="pc-item"><a class="pc-link" href="{% url 'club_event_validation' %}">Club Events</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'partnership_request_validation' %}">Partnership request</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'diplome_validation' %}">Diplome Validation</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'success_stories_validation' %}">Success Stories</a></li>
+              <li class="pc-item"><a class="pc-link" href="{% url 'alumni_testimony_validation' %}">Alumni testimonies</a></li>
+
+              {% endif %}
+            {% endif %}
+          </ul>
+
+
+        </li>
+
         <li class="pc-item pc-hasmenu">
           <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-key"></i></span><span
               class="pc-mtext">User Pages</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
@@ -85,6 +114,7 @@
             {% endif %}
           </ul>
         </li>
+
 
     </div>
   </div>

@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     "partnership",
     "school",
     "clubs",
+    "alumni",
+    "research",
 ]
 
 MIDDLEWARE = [

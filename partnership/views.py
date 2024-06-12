@@ -1,5 +1,7 @@
 from django.http import JsonResponse
-
+from rest_framework import generics
+from .models import Diplome
+from .serializers import DiplomeSerializer
 # Create your views here.
 def partners_view(request):
     partners = [
@@ -9,3 +11,10 @@ def partners_view(request):
     ]
     
     return JsonResponse({'partners': partners})
+
+class PostDiplome(generics.CreateAPIView):
+    queryset = Diplome.objects.all()
+    serializer_class = DiplomeSerializer
+    
+    
+    

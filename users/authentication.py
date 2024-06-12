@@ -51,3 +51,14 @@ class IsSuperAdmin(BasePermission):
         except:
             return False
         return bool(user and user_type == UserType.SUPER_ADMIN)
+    
+    
+    
+class IsClub(BasePermission):
+    def has_permission(self, request, view):
+        try:
+            user = request.user
+            user_type = user.type
+        except:
+            return False
+        return bool(user and (user_type == UserType.CLUB ))

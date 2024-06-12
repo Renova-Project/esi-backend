@@ -2,20 +2,13 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
+from users.models import User
 
 class Slider(models.Model):
     slider_image = models.ImageField(upload_to="school/slider/")
     slider_description = models.CharField(max_length=255)
     slider_action_name = models.CharField(max_length=100)
     slider_link = models.URLField(blank=True)
-
-class Image(models.Model):
-    content_type = models.ForeignKey(ContentType,null=True, on_delete=models.CASCADE)
-
-    object_id = models.PositiveIntegerField(null=True)
-    content_object = GenericForeignKey('content_type', 'object_id')
-    image_description = models.TextField()
-    link_image = models.ImageField(upload_to="school/images/")
     
     
 class SchoolGallery(models.Model):
@@ -23,7 +16,7 @@ class SchoolGallery(models.Model):
     link_image = models.ImageField(upload_to="school/gallery/")
     
 class Event(models.Model):
-    event_name = models.TextField()
+    event_name = models.CharField(max_length=255)
     event_type = models.TextField()
     event_description = models.TextField()
     start_date = models.DateTimeField()
@@ -32,7 +25,9 @@ class Event(models.Model):
     event_location = models.TextField()
     
     is_validated = models.BooleanField(default=False)
-    #event_maker = models.ForeignKey(Club, on_delete=models.CASCADE , null=True)
+    event_file = models.FileField(upload_to="school/events/files", null=True, blank=True)# in the case of club technical file
+    
+    event_maker = models.ForeignKey(User, on_delete=models.CASCADE , null=True)
     #image = models.ForeignKey('Image', on_delete=models.CASCADE) #indicate one associated image
     
 
@@ -42,6 +37,8 @@ class SuccessStory(models.Model) :
     title = models.CharField(max_length=255)
     description =models.TextField()
     story_date =models.DateField()
+    
+    is_validated = models.BooleanField(default=False)
     
 class SchoolStatistic(models.Model) : 
     designation = models.CharField(max_length=255)
@@ -57,7 +54,7 @@ class News(models.Model):
     news_type = models.CharField(max_length=20, choices=NEWS_TYPE_CHOICES)
     news_details = models.TextField()
     news_date = models.DateTimeField()
-    image = models.ForeignKey('Image', on_delete=models.CASCADE) #indicate one associated image
+    image = models.ImageField(upload_to="school/images/")
 
 class Defense(models.Model): 
     event = models.OneToOneField('Event', on_delete=models.CASCADE)

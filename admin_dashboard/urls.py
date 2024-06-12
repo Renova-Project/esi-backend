@@ -10,8 +10,21 @@ urlpatterns = [
     path('delete_image/<int:image_id>/', views.delete_image_view, name='delete_image'),
  
     
+    path('club_event_validation/', views.club_event_validation_view, name='club_event_validation'),
+    path('partnership_request_validation/', views.partnership_request_view, name='partnership_request_validation'),
+    path('success_stories_validation/', views.success_stories_validation_view, name='success_stories_validation'),
+    path('alumni_testimony_validation/', views.alumni_testimony_validation_view, name='alumni_testimony_validation'),
+    path('diplome_validation/', views.diplome_validation_view, name='diplome_validation'),
     
+    path('validate_partner/', views.validate_partner, name='validate_partner'),
+    path('validate_success_story/', views.validate_success_story, name='validate_success_story'),
+    path('validate_club_event/', views.validate_club_event, name='validate_club_event'),
+    path('validate_testimony/', views.validate_testimony, name='validate_testimony'),
     
+    path('validate_diplome/', views.validate_diplome, name='validate_diplome'),
+
+
+
 
     # Authentication
     path('accounts/login/', views.UserLoginView.as_view(), name='login_user'),

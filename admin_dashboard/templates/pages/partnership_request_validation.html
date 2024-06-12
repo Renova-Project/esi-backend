@@ -1,0 +1,65 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %} Club Event validation {% endblock title %}
+{% block content %}
+  <!-- [ Main Content ] start -->
+  <div class="pc-container">
+    <div class="pc-content">
+      <!-- [ Main Content ] start -->
+      <div class="row">
+        <!-- [ sample-page ] start -->
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header pb-0 card-no-border">
+              <h3 class="mb-3">Partnership Requests</h3>
+            </div>
+            <div class="card-body">
+              <form method="POST" action="{% url 'validate_partner' %}">
+                {% csrf_token %}
+              <div class="table-responsive">
+                <table class="display" id="data-source-1" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Partner name</th>
+                      <th>Email</th>
+                      <th>Website</th>
+                      <th>Official document</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for partnership_request in partnership_request_list %}
+                    <tr>
+                      <td>{{partnership_request.name}}</td>
+                      <td>{{partnership_request.email}}</td>
+                      <td>{{partnership_request.link}}</td>
+                      <td class="action"><a class="pdf" href="{{base_url}}{{ partnership_request.official_document }}" target="_blank">
+                        <i class="ti ti-file"></i>
+                      <td>
+                          <input type="hidden" name="partner_id" value="{{ partnership_request.id }}">
+                          <input type="submit" class="btn btn-continue" value="Validate"/>
+                      </td>
+                    </tr>
+                   {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- [ sample-page ] end -->
+      </div>
+      <!-- [ Main Content ] end -->
+    </div>
+  </div>
+  <!-- [ Main Content ] end -->
+{% endblock content %}
+
+{% block extra_js %}
+  <script src="{% static 'assets/js/datatables/jquery.dataTables.min.js'%}"></script>
+  <script src="{% static 'assets/js/datatables/datatable.custom.js'%}"></script>
+  <!-- [Page Specific JS] end -->
+{% endblock extra_js %}

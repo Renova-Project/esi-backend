@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Slider, Image, Event,News ,SchoolGallery ,SuccessStory, Defense, Conference, Competition, Examiner, Speaker
+from .models import Slider, Event,News ,SchoolGallery ,SuccessStory, Defense, Conference, Competition, Examiner, Speaker
 
 
 class SliderAdmin(admin.ModelAdmin):
@@ -71,7 +71,7 @@ class NewsAdmin(admin.ModelAdmin):
     def thumbnail_news(self, obj):
         if obj.image:
             from django.utils.html import mark_safe
-            return mark_safe(f'<img src="{obj.image.link_image.url}" style="width: 100px; height: auto;" />')
+            return mark_safe(f'<img src="{obj.image.url}" style="width: 100px; height: auto;" />')
         return "No Image"
     thumbnail_news.short_description = 'Thumbnail'
 
@@ -103,7 +103,6 @@ class SuccessStoryAdmin(admin.ModelAdmin):
 # Register the model with the custom admin class
 #admin.site.register(SchoolGallery, SchoolGalleryAdmin)
 
-admin.site.register(Image)
 admin.site.register(SchoolGallery)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Event, EventAdmin)

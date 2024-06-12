@@ -12,23 +12,29 @@ class SectorActivity(models.Model):
 
 
 class Partner(models.Model):
-    organizationName = models.CharField(max_length=255)  
-    organizationDescription = models.TextField()  
-    organizationAddress = models.TextField()  
-    organizationEmail = models.EmailField(max_length=255)  
-    organizationPhone = models.CharField(max_length=20)  
-    organizationSize = models.IntegerField()  
-    organizationCountry = models.CharField(max_length=50)  
-    websiteLink = models.URLField()  
-    organizationLogo =models.ImageField(upload_to="partnership/logos/")
+    name = models.CharField(max_length=255)  
+    description = models.TextField()  
+    address = models.TextField()  
+    email = models.EmailField(max_length=255)  
+    phone = models.CharField(max_length=20)  
+    size = models.IntegerField()  
+    country = models.CharField(max_length=50)  
+    link = models.URLField()  
+    logo =models.ImageField(upload_to="partnership/logos/")
 
-    officialDocument = models.FileField(upload_to="partnership/official_documents")
+    official_document = models.FileField(upload_to="partnership/official_documents")
+    
+    is_validated = models.BooleanField(default=False)
 
     sectorActivity = models.ForeignKey(
         SectorActivity,
         on_delete=models.CASCADE, 
         related_name="partners",
     )
+    
+class Diplome(models.Model) : 
+    image =models.ImageField(upload_to="partner/dimplomes/")
+    partner = models.ForeignKey(Partner , on_delete=models.CASCADE)
+    is_validated = models.BooleanField(default=None)
 
-    def __str__(self):
-        return self.organizationName
+

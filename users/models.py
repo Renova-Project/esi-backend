@@ -11,6 +11,7 @@ class UserType(models.TextChoices):
     STUDIES_DIRECTION = "STUDIES_DIRECTION", _("Studies direction")
     ALUMNI = "ALUMNI", _("Alumni")
     PARTNER = "PARTNER", _("Partner")
+    CLUB = "CLUB", _("Club")
 
 
 class UserManager(auth_models.BaseUserManager):

@@ -1,8 +1,8 @@
 
 from rest_framework import generics
-from .models import Slider , Event,News, SuccessStory
-from .serializers import SliderSerializer , EventSerializer , NewsSerializer , PartnerLogoSerializer, SuccessStoriesSerializer
-from rest_framework.views import APIView
+from .models import Slider , Event,News, SuccessStory, SchoolGallery
+from .serializers import SliderSerializer , EventSerializer , NewsSerializer , PartnerLogoSerializer, SuccessStoriesSerializer, SchoolGallerySerializer
+from rest_framework.views import APIView 
 from rest_framework.response import Response 
 from rest_framework import status
 from partnership.models import Partner
@@ -86,9 +86,21 @@ class SearchView(APIView):
         })
         
 class SuccessStroriesView(generics.ListAPIView):
-    queryset = SuccessStory.objects.all()  
-    serializer_class = SuccessStoriesSerializer  
+    queryset = SuccessStory.objects.filter(is_validated=True)
+    serializer_class = SuccessStoriesSerializer
 
+    
+class SuccessStoryDetail(APIView):
+    def get(self, request, id):
+        story = SuccessStory.objects.get(id=id)
+        serializer = SuccessStoriesSerializer(story)
+        return Response(serializer.data)
+
+
+
+class SchoolGalleryView(generics.ListAPIView) : 
+    queryset = SchoolGallery.objects.all()   
+    serializer_class =SchoolGallerySerializer
     
     
     

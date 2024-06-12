@@ -1,6 +1,6 @@
 # serializers.py
 from rest_framework import serializers
-from .models import Slider , Event,News , SuccessStory
+from .models import Slider , Event,News , SuccessStory, SchoolGallery
 from partnership.models import Partner
 
 
@@ -30,4 +30,10 @@ class PartnerLogoSerializer(serializers.ModelSerializer):
 class SuccessStoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = SuccessStory
+        fields = '__all__'
+        
+        
+class SchoolGallerySerializer (serializers.ModelSerializer) : 
+    class Meta : 
+        model = SchoolGallery
         fields = '__all__'
