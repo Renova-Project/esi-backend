@@ -195,8 +195,6 @@ def render_dashboard(request):
     context = {
       'partner_count': partner_count,
       'event_count': event_count,
-      'total_visitors_count': total_visitors_count,
-      'visitors_count_with_month': visitors_count_with_months,
     }
     
     return render(request, 'pages/dashboard.html', context)

@@ -28,9 +28,6 @@ class EventSerializer(serializers.ModelSerializer):
         if not data.get('event_description'):
             raise serializers.ValidationError('Event description is required')
         
-        if not data.get('start_date'):
-            raise serializers.ValidationError('Start date is required')
-        
         if not data.get('event_location'):
             raise serializers.ValidationError('Event location is required')
         
