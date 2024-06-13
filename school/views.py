@@ -1,12 +1,13 @@
 
 from rest_framework import generics
-from .models import Slider , Event,News, SuccessStory, SchoolGallery
+from .models import Slider , Event,News, SuccessStory, SchoolGallery , Analytics
 from .serializers import SliderSerializer , EventSerializer , NewsSerializer , PartnerLogoSerializer, SuccessStoriesSerializer, SchoolGallerySerializer
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
 from rest_framework import status
 from partnership.models import Partner
 from django.db.models import Q
+
 
 
 # Define the view class
@@ -51,6 +52,9 @@ class HomeView(APIView):
             "headline_news":headline_news.data,
             "partners_logos" : partners_logo_serializer.data
         }
+        
+        #Analytics.increment_visitors()
+        #Analytics.increment_current_month_visitors()
 
         return Response(response_data, status=status.HTTP_200_OK)
 

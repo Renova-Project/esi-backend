@@ -7,13 +7,15 @@ from school.models import SchoolGallery
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework import status
-from school.models  import Event , SuccessStory
+from school.models  import Event , SuccessStory , Analytics
 from partnership.models import Partner
 from alumni.models import Alumni 
 from partnership.models import Diplome
 from django.shortcuts import redirect, get_object_or_404
 
 from django.core.mail import send_mail
+from django.db.models import Count
+from datetime import datetime
 
 
 
@@ -178,10 +180,26 @@ def diplome_validation_view(request):
 
 
 def render_dashboard(request):
-  
-  partner_count = Partner.objects.count()
-  
-  return render(request, 'pages/dashboard.html')
+    partner_count = Partner.objects.count()
+    event_count = Event.objects.count()
+        
+    current_date = datetime.now()
+    current_year = current_date.year
+    current_month = current_date.month
+
+    months = [datetime(current_year, month, 1).strftime('%B') for month in range(1, current_month + 1)]    
+    # Get the count of visitors for each month of the current year
+    total_visitors_count = ""#Analytics.objects.filter(date__year=current_year).count()
+    visitors_count_with_months = ""
+    
+    context = {
+      'partner_count': partner_count,
+      'event_count': event_count,
+      'total_visitors_count': total_visitors_count,
+      'visitors_count_with_month': visitors_count_with_months,
+    }
+    
+    return render(request, 'pages/dashboard.html', context)
 
 
 def validate_diplome(request):

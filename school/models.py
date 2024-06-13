@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+from datetime import datetime
+
 
 from users.models import User
 
@@ -9,7 +11,6 @@ class Slider(models.Model):
     slider_description = models.CharField(max_length=255)
     slider_action_name = models.CharField(max_length=100)
     slider_link = models.URLField(blank=True)
-    
     
 class SchoolGallery(models.Model):
     image_description = models.TextField()
@@ -25,7 +26,7 @@ class Event(models.Model):
     event_location = models.TextField()
     
     is_validated = models.BooleanField(default=False)
-    image = models.ImageField(upload_to="school/events/images", null=True, blank=True)
+    image = models.ImageField(upload_to="school/events/images", null=True, blank=True , default="school/events/images/default.jpg")
     
     event_maker = models.ForeignKey(User, on_delete=models.CASCADE , null=True)
     #image = models.ForeignKey('Image', on_delete=models.CASCADE) #indicate one associated image
@@ -86,3 +87,37 @@ class Speaker(models.Model):
     speaker_first_name = models.CharField(max_length=50)
     profession = models.TextField()
     organization = models.TextField()
+    
+    
+class Analytics(models.Model):
+    MONTH_CHOICES = [
+        ('January', 'January'),
+        ('February', 'February'),
+        ('March', 'March'),
+        ('April', 'April'),
+        ('May', 'May'),
+        ('June', 'June'),
+        ('July', 'July'),
+        ('August', 'August'),
+        ('September', 'September'),
+        ('October', 'October'),
+        ('November', 'November'),
+        ('December', 'December'),
+    ]
+
+    total_visitor_count = models.IntegerField()
+    month_visitor_count = models.IntegerField()
+    month = models.CharField(max_length=9, choices=MONTH_CHOICES)
+    
+    def increment_visitors(self):
+        self.total_visitor_count += 1
+        self.month_visitor_count += 1
+        self.save()
+
+    @classmethod
+    def increment_current_month_visitors(cls):
+        current_month = datetime.now().strftime('%B')
+        instance, created = cls.objects.get_or_create(month=current_month)
+        instance.increment_visitors()
+    
+

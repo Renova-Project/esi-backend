@@ -25,7 +25,7 @@ class NewsSerializer(serializers.ModelSerializer):
 class PartnerLogoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Partner
-        fields = ['organizationId', 'organizationLogo']  # Only return the logo
+        fields = ['id', 'logo']  # Only return the logo
         
 class SuccessStoriesSerializer(serializers.ModelSerializer):
     class Meta:
