@@ -1,6 +1,6 @@
 
 from rest_framework import generics
-from .models import Slider , Event,News, SuccessStory, SchoolGallery , Analytics
+from .models import Slider , Event,News, SuccessStory, SchoolGallery 
 from .serializers import SliderSerializer , EventSerializer , NewsSerializer , PartnerLogoSerializer, SuccessStoriesSerializer, SchoolGallerySerializer
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
@@ -14,6 +14,12 @@ from django.db.models import Q
 class EventListView(generics.ListAPIView):
     queryset = Event.objects.all()  # Retrieve all events from the database
     serializer_class = EventSerializer  # Use the previously defined serializer
+    
+class EventDetailView(APIView):
+    def get(self, request, id):
+        event = Event.objects.get(id=id)
+        serializer = EventSerializer(event)
+        return Response(serializer.data)
     
 class NewsByTypeView(APIView):
     def get(self, request):
