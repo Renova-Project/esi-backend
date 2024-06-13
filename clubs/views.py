@@ -54,7 +54,7 @@ class UpcomingEventsView(APIView):
     
     
 class EventCreateView(APIView):
-    authentication_classes = [UserAuthentication]
+    #authentication_classes = [UserAuthentication]
     #permission_classes = [IsClub] 
     
     def post(self, request):

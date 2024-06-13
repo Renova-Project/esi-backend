@@ -20,8 +20,8 @@ class Event(models.Model):
     event_name = models.CharField(max_length=255)
     event_type = models.TextField()
     event_description = models.TextField()
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateTimeField(default=datetime.now)
+    end_date = models.DateTimeField(null=True, blank=True)
     event_details = models.TextField()
     event_location = models.TextField()
     
