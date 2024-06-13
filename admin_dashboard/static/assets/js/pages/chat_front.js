@@ -142,7 +142,7 @@ const createChatLi = (message, className) => {
     // Create a chat <li> element with passed message and className
     const chatLi = document.createElement("li");
     chatLi.classList.add("chat", `${className}`);
-    let chatContent = className === "outgoing" ? `<p></p>` : `<img src="esi_bot.svg" class="bot-img" alt="esi bot" width="48" height="48"><p></p>`;
+    let chatContent = className === "outgoing" ? `<p></p>` : `<img src="/static/assets/images/esi_bot.svg" class="bot-img" alt="esi bot" width="48" height="48"><p></p>`;
     chatLi.innerHTML = chatContent;
     chatLi.querySelector("p").textContent = message;
     return chatLi; // return chat <li> element
