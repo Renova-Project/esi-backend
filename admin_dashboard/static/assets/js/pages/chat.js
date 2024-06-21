@@ -22,6 +22,8 @@ DIRECTEUR DE LA BIBLIOTHÈQUE ,M. Abderrahmane BELLAHRECHE ,+213 23 93 91 32 Pos
 DIRECTION MOYENS INFORMATIQUES ,M. Daoud BOUMAZOUZA  ,+213 023 93 91 42 Poste 3052 ,d_boumazouza@esi.dz
 LABORATOIRE DE RECHERCHE LCSI ,M. Djameleddine ZEGOUR ,+213 023 93 91 39
 LABORATOIRE DE RECHERCHE LMCS ,Mme Karima BENATCHBA ,+213 023 93 91 30
+Chalal rachid , Enseignant de module MSSI 
+Nader Fahima , Enseignant D'urbanisation du SI
 
 * Club : Google Developer Groups
 Date de créationSeptembre 2011

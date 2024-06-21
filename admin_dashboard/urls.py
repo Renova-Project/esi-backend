@@ -20,6 +20,7 @@ urlpatterns = [
     
     path('validate_partner/', views.validate_partner, name='validate_partner'),
     path('validate_success_story/', views.validate_success_story, name='validate_success_story'),
+    
     path('validate_club_event/', views.validate_club_event, name='validate_club_event'),
     path('validate_testimony/', views.validate_testimony, name='validate_testimony'),
     

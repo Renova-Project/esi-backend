@@ -12,7 +12,7 @@ from django.db.models import Q
 
 # Define the view class
 class EventListView(generics.ListAPIView):
-    queryset = Event.objects.all()  # Retrieve all events from the database
+    queryset = Event.objects.filter(is_validated=True)  # Retrieve all events from the database
     serializer_class = EventSerializer  # Use the previously defined serializer
     
 class EventDetailView(APIView):

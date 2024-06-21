@@ -78,17 +78,10 @@
             <i class="ti ti-search icon-search"></i>
             <input type="search" class="form-control" placeholder="Search profile options" />
           </form>
-            <a href="#" class="dropdown-item">
-              <i class="ti ti-settings"></i>
-              <span>Account Settings</span>
-            </a>
-            <a href="#" class="dropdown-item">
-              <i class="ti ti-user"></i>
-              <span>Social Profile</span>
-            </a>
+
             {% if request.user.is_authenticated %}
               {% if request.user.is_superuser %}
-                <a href="{% url 'admin:logout' %}" class="dropdown-item">
+                <a href="{% url 'logout_user' %}" class="dropdown-item">
               {% else %}
                 <a href="{% url 'logout' %}" class="dropdown-item">
               {% endif %}

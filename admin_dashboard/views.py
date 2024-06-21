@@ -19,7 +19,7 @@ from datetime import datetime
 
 
 
-BASE_URL = 'https://res.cloudinary.com/derk6emxa/image/upload/v1/'
+BASE_URL = 'http://localhost:8000/media/'
 
 
 # Create your views here.
@@ -119,12 +119,11 @@ def club_event_validation_view(request):
 def validate_club_event(request):
     if request.method == 'POST':
         club_event_id = request.POST.get('club_event_id')
-        club_event = get_object_or_404(Partner, pk=club_event_id)
+        club_event = get_object_or_404(Event, pk=club_event_id)
         club_event.is_validated = True
         club_event.save()
         
-    return render(request ,'pages/club_event_validation.html')
-
+    return redirect('/club_event_validation/')
 
 def partnership_request_view(request):
 
@@ -135,7 +134,7 @@ def partnership_request_view(request):
   
   context = {
     "partnership_request_list": non_validated_events,
-    'base_url': BASE_URL
+    'base_url': BASE_URL 
   }
   return render(request, 'pages/partnership_request_validation.html', context)
 
@@ -146,7 +145,7 @@ def validate_partner(request):
         partner.is_validated = True
         partner.save()
         
-    return render(request ,'pages/partnership_request_validation.html')
+    return redirect('/partnership_request_validation/')
 
 
 
@@ -163,11 +162,11 @@ def success_stories_validation_view(request):
 def validate_success_story(request):
     if request.method == 'POST':
         story_id = request.POST.get('story_id')
-        story = get_object_or_404(Partner, pk=story_id)
+        story = get_object_or_404(SuccessStory, pk=story_id)
         story.is_validated = True
         story.save()
         
-    return render(request ,'pages/success_stories_validation.html')
+    return redirect('/success_stories_validation/')
 
 
 def diplome_validation_view(request):

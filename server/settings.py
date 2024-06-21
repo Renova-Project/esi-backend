@@ -50,13 +50,13 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "cloudinary_storage",
+    #"cloudinary_storage",
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework_simplejwt",
     "users",
-    "cloudinary",
+    #"cloudinary",
     "partnership",
     "school",
     "clubs",
@@ -101,7 +101,7 @@ WSGI_APPLICATION = "server.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': getenv("DB_ENGINE"),
@@ -119,7 +119,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
+
 
 
 # Password validation
@@ -157,12 +157,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
-
-CLOUDINARY_STORAGE = {
-    'STATICFILES_MANIFEST_ROOT': os.path.join(BASE_DIR, 'my-manifest-directory')
-}
+#CLOUDINARY_STORAGE = {
+#    'STATICFILES_MANIFEST_ROOT': os.path.join(BASE_DIR, 'my-manifest-directory')
+#}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -170,15 +169,15 @@ CLOUDINARY_STORAGE = {
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = BASE_DIR/'media'
 
 AUTH_USER_MODEL = "users.User"
 
 # cloudinary integration 
 
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME" :getenv("CLOUD_NAME"),
-    "API_KEY":getenv("CLOUD_API_KEY"),
-    "API_SECRET":getenv("CLOUD_SECRET_KEY")
-}
+#CLOUDINARY_STORAGE = {
+#    "CLOUD_NAME" :getenv("CLOUD_NAME"),
+#    "API_KEY":getenv("CLOUD_API_KEY"),
+#    "API_SECRET":getenv("CLOUD_SECRET_KEY")
+#}

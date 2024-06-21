@@ -44,7 +44,7 @@ function floatchart() {
         y: {
           title: {
             formatter: function (seriesName) {
-              return 'Total Earning';
+              return 'Total ';
             }
           }
         },
@@ -94,7 +94,7 @@ function floatchart() {
         y: {
           title: {
             formatter: function (seriesName) {
-              return 'Total Earning';
+              return 'Total ';
             }
           }
         },
@@ -229,7 +229,7 @@ function floatchart() {
       series: [
         {
           name: 'Visitors',
-          data: [35, 15, 15, 35, 65, 40, 80, 25, 15, 85, 25, 75]
+          data: [0, 0, 0, 0, 51, 72]
         }
       ],
       responsive: [
@@ -246,7 +246,7 @@ function floatchart() {
       ],
       xaxis: {
         type: 'category',
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
       },
       grid: {
         strokeDashArray: 4
