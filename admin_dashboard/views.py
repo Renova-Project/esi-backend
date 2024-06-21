@@ -19,7 +19,7 @@ from datetime import datetime
 
 
 
-BASE_URL = 'http://localhost:8000/media/'
+BASE_URL = 'https://res.cloudinary.com/derk6emxa/image/upload/v1/'
 
 
 # Create your views here.
