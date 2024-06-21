@@ -1,5 +1,5 @@
 {% extends 'layouts/auth_base.html' %}
-{% load static %}
+{% load i18n static  %}
 
 {% block title %} Login {% endblock title %}
 
@@ -10,12 +10,13 @@
         <div class="card my-5">
           <div class="card-body">
             <a href="#" class="d-flex justify-content-center">
-              <img src="{% static 'assets/images/logo-dark.svg' %}" />
+              <img src="{% static 'assets/images/logo-dark.svg' %}" class="logo logo-lg"/>
             </a>
             <div class="row">
               <div class="d-flex justify-content-center">
                 <div class="auth-header">
                   <h2 class="text-secondary mt-5"><b>Hi, Welcome Back</b></h2>
+                  <p class="f-16 mt-2">Enter your credentials to continue</p>
                 </div>
               </div>
             </div>
@@ -29,33 +30,55 @@
                 {% endfor %}
               {% endif %}
 
-              {% for field in form %}
               <div class="form-floating mb-3">
-                {{field}}
-                <label for="floatingInput">{{ field.label }}</label>
+                <input type="text" class="form-control form-control-lg" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Username">
+                <label for="floatingInput">Username</label>
               </div>
-              <span class="text-danger">{{ field.errors }}</span>
-              {% endfor %}
-              <div class="d-flex mt-1 justify-content-between">
-                <div class="form-check">
-                  <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
-                  <label class="form-check-label text-muted" for="customCheckc1">Remember me</label>
-                </div>
-                <h5 class="text-secondary">
-                  <a href="{% url 'password_reset' %}">Forgot Password?</a>
-                </h5>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control form-control-lg" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" placeholder="Password">
+                <label for="floatingInput">Password</label>
               </div>
               <div class="d-grid mt-4">
                 <button type="submit" class="btn btn-secondary">Sign In</button>
               </div>
             </form>
             <hr />
-            <h5 class="d-flex justify-content-center">Don't have an account?
-              <a class="ms-2" href="{% url 'register' %}">Register</a>
-            </h5>
           </div>
         </div>
       </div>
     </div>
   </div>
 {% endblock content %}
+
+
+
+{% block extra_js %}
+<script type="application/javascript">
+    {% if form.username.errors %}
+        notification.danger("{{ form.username.errors }}", 'top', 'right');
+    {% endif %}
+    {% if form.password.errors %}
+        notification.danger("{{ form.password.errors }}", 'top', 'right');
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        var msg = "You are authenticated as {{ username }}, but are not authorized to " +
+            "access this page.Would you like to login to a different account ?"
+        notification.warning(msg, 'top', 'right');
+    {% endif %}
+
+    {% if form.errors and not form.non_field_errors %}
+        {% if form.errors.items|length == 1 %}
+            notification.warning("{% trans "Please correct the error below." %}", 'top', 'right');
+        {% else %}
+            notification.warning("{% trans "Please correct the errors below." %}", 'top', 'right');
+        {% endif %}
+    {% endif %}
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            notification.warning("{{ error }}", 'top', 'right');
+        {% endfor %}
+    {% endif %}
+</script>
+{% endblock %}
